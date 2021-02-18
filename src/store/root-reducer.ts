@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import  loadUsersDataReducer from "../components/table/reducer";
-import loadUsersModalReducer from "../components/modal/reducer";
+import { usersTableReducer } from "../components/table/slice";
+
+// import loadUsersModalReducer from "../components/modal/reducer";
 
 
 const rootReducer = combineReducers({
-  userTable: loadUsersDataReducer,
-  currentUser: loadUsersModalReducer,  
+  userTable: usersTableReducer  
 });
 
 export default rootReducer;

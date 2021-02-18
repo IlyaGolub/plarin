@@ -1,18 +1,18 @@
 import { createReducer } from "typesafe-actions";
-import { loadUsersDataAsync } from "./actions";
+import { loadUsersData } from "./slice";
 import { RequestUser} from "Models";
 
 
-const loadUsersDataReducer = createReducer({ users:{} as RequestUser, loadRequest: false, fail:""})
-    .handleAction(loadUsersDataAsync.success, (state, action) => {
+const loadUsersDataReducer = createReducer({ users:{} as RequestUser, loadRequest: false})
+    .handleAction(loadUsersData.success, (state, action) => {
         return { ...state, users:{...action.payload}};
     })
-    .handleAction(loadUsersDataAsync.request, (state) => {
+    .handleAction(loadUsersData.request, (state) => {
         return { ...state, loadRequest: true }
     })   
-    .handleAction(loadUsersDataAsync.failure, (state: any) => {
+    .handleAction(loadUsersData.failure, (state) => {
         return { ...state, loadRequest: false };
-    });
+    }); 
 
     export default loadUsersDataReducer;
     export type loadUsersData = ReturnType<typeof loadUsersDataReducer>;

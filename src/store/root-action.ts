@@ -1,8 +1,6 @@
-import * as loadUsersDataAsync from '../components/table/actions';
-import * as loadUsersModalAsync from '../components/modal/actions';
+import {usersTableActions} from '../components/table/slice';
+// import * as loadUsersModalAsync from '../components/modal/actions';
 
-
-export default {
-  loadUsersDataAsync,
-  loadUsersModalAsync
+export {
+  usersTableActions
 };

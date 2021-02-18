@@ -4,7 +4,8 @@ import { Epic } from "redux-observable";
 import { fromFetch } from 'rxjs/fetch';
 import { filter, switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { loadUsersDataAsync} from './actions';
+import { loadUsersData, usersTableActions } from './slice';
+
 
 export const loadUsersDataEpic: Epic<
     RootAction,
@@ -12,20 +13,21 @@ export const loadUsersDataEpic: Epic<
     RootState
 > = (action$, state$) =>
         action$.pipe(
-            filter(isActionOf(loadUsersDataAsync.request)),
+            filter(loadUsersData.request.match),
             switchMap(() =>
                 fromFetch('https://reqres.in/api/users', {
                     mode: "cors",
-                    credentials: "include"
+                    credentials: "include",
+                    method: "GET"
                 }).pipe(
                     switchMap(response => {
-                        if (response.ok)
+                        if (response.ok)                     
                             return response.json();
-
+                        
                         throw new Error();
                     }),
-                    map(loadUsersDataAsync.success),
-                    catchError(error => of(loadUsersDataAsync.failure()))
+                    map(loadUsersData.success),
+                    catchError(error => of(loadUsersData.failure()))
                 ),
             )
         );
