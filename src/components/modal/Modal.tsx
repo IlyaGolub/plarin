@@ -9,23 +9,16 @@ import { usersTableActions } from '../table/slice';
 export const ModalUsers: React.FC = () => {
     const { openModal, dataModal } = useSelector((s: RootState) => s.userTable)
     const dispatch = useDispatch();
-    const [test, setTest] = useState({avatar:"", last_name:"", first_name:"",email:"",id:0} as Users) ;
-
 
     const handleClick = () => {
         dispatch(usersTableActions.ToggleModal(!openModal))
-    };
-
-    useEffect(()=>{
-        console.log(dataModal)
-        setTest(dataModal)
-    },[dataModal])
+    };  
 
     return (
         <>
             <Modal show={openModal} onHide={handleClick}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{`${test.first_name} ${test.last_name}`}</Modal.Title>
+                    <Modal.Title>{`${dataModal.first_name} ${dataModal.last_name}`}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>                    
                     <Row>
@@ -34,7 +27,7 @@ export const ModalUsers: React.FC = () => {
                         </Col>
                         <Col md={7}>
                             <img
-                                src={`${test.avatar}`}
+                                src={`${dataModal.avatar}`}
                                 width={64}
                                 height={64}
                                 alt={"Loadind Image"}
@@ -46,7 +39,7 @@ export const ModalUsers: React.FC = () => {
                             <label >first_name</label>
                         </Col>
                         <Col md={7}>
-                            <input type="text" readOnly value={test.first_name} />                            
+                            <input type="text" readOnly value={dataModal.first_name} />                            
                         </Col>
                     </Row>
                     <Row>
@@ -54,7 +47,7 @@ export const ModalUsers: React.FC = () => {
                             <label >last_name</label>
                         </Col>
                         <Col md={7}>
-                            <input type="text" readOnly value={test.last_name} />
+                            <input type="text" readOnly value={dataModal.last_name} />
                         </Col>
                     </Row>
                     <Row>
@@ -62,7 +55,7 @@ export const ModalUsers: React.FC = () => {
                             <label >email</label>
                         </Col>
                         <Col md={7}>
-                            <input type="text" readOnly value={test.email} />
+                            <input type="text" readOnly value={dataModal.email} />
                         </Col>
                     </Row>
 

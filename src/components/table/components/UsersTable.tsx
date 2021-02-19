@@ -49,7 +49,7 @@ export const UsersTable: React.FC = () => {
                 totalRecords={users.length}
                 pageLimit={15}
                 pageNeighbours={2}
-            ></Pagination>
+            ></Pagination>            
             <ModalUsers />
         </Container>
     )
