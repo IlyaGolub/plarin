@@ -5,8 +5,8 @@ import rootEpic from "./root-epic";
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 export const epicMiddleware = createEpicMiddleware<
-  RootAction,
-  RootAction,
+   any,
+   any,
   RootState>();
 
 const middleware = [...getDefaultMiddleware({serializableCheck: false}), epicMiddleware];

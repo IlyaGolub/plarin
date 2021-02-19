@@ -1,10 +1,10 @@
 
-import { RootAction, RootState, isActionOf } from 'typesafe-actions';
+import { RootAction, RootState } from 'typesafe-actions';
 import { Epic } from "redux-observable";
 import { fromFetch } from 'rxjs/fetch';
 import { filter, switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { loadUsersData, usersTableActions } from './slice';
+import { usersTableActions } from './slice';
 
 
 export const loadUsersDataEpic: Epic<
@@ -13,21 +13,20 @@ export const loadUsersDataEpic: Epic<
     RootState
 > = (action$, state$) =>
         action$.pipe(
-            filter(loadUsersData.request.match),
+            filter(usersTableActions.Request.match),
             switchMap(() =>
-                fromFetch('https://reqres.in/api/users', {
-                    mode: "cors",
-                    credentials: "include",
+                fromFetch('https://reqres.in/api/users', {   
                     method: "GET"
                 }).pipe(
-                    switchMap(response => {
-                        if (response.ok)                     
+                    switchMap(response => {                    
+                        if (response.ok)  {
+                            console.log("test")
                             return response.json();
-                        
+                        }
                         throw new Error();
                     }),
-                    map(loadUsersData.success),
-                    catchError(error => of(loadUsersData.failure()))
+                    map(usersTableActions.listSuccess),
+                    catchError(error => of(usersTableActions.Fail))
                 ),
             )
         );

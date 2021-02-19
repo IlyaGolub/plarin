@@ -2,20 +2,22 @@ import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RequestUser } from "Models";
 
 
-export const loadUsersData = {
-    request: createAction('loadUsersData/request'),
-    success: createAction<RequestUser>('loadUsersData/success'),
-    failure: createAction('loadUsersData/error')
-};
-
 const userTableSlice = createSlice({
     name: "usersTable",
     initialState: {
-        users: [] as RequestUser[]
+        users: [] as RequestUser[],
+        loadRequest: false,
+        loadrequestfail: false
     },
     reducers: {
-        listRequest(s, a) {
+        listSuccess(s, a) {
             s.users = a.payload.data;
+        },
+        Request(s, a:PayloadAction<boolean>) {
+            s.loadRequest = a.payload;
+        },
+        Fail(s, a) {
+            s.loadrequestfail = true;
         }
     }
 });

@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 import { RootState } from 'typesafe-actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { Users } from 'Models'
-
-import { loadUsersData, usersTableActions } from '../slice'
-import { fromFetch } from 'rxjs/fetch'
+import { usersTableActions } from '../slice'
 
 const style = {
     li: {
@@ -19,17 +16,21 @@ const style = {
 }
 export const UsersTable: React.FC = () => {
     const dispatch = useDispatch();
-    const users = useSelector((s:RootState) => s.userTable.users);
-    //  fromFetch();
-    
+    const users = useSelector((s:RootState) => s.userTable.users);  
+
+    const func = () =>{
+        {console.log(users)}
+        return <div></div>    
+    }
     useEffect(()=>{
-        dispatch(loadUsersData.request)
+        console.log("test1");
+        dispatch(usersTableActions.Request(true));
     },[])
   
 
     return (
         <div style={style.li}>
-            <div>{users}</div>       
+           {func()}
         </div>
     )
 }
