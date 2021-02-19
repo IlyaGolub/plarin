@@ -6,8 +6,10 @@ const userTableSlice = createSlice({
     name: "usersTable",
     initialState: {
         users: [] as Users[],
+        dataModal:{} as Users,
         loadRequest: false,
-        loadrequestfail: false
+        loadrequestfail: false,
+        openModal:false
     },
     reducers: {
         listSuccess(s, a) {
@@ -18,6 +20,12 @@ const userTableSlice = createSlice({
         },
         Fail(s, a) {
             s.loadrequestfail = true;
+        },
+        ToggleModal(s,a:PayloadAction<boolean>) {
+            s.openModal = a.payload
+        },
+        SetDataModal(s,a:PayloadAction<Users>) {
+            s.dataModal = a.payload
         }
     }
 });

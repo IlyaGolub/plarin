@@ -1,6 +1,7 @@
 import React, { Component, ReactText } from 'react';
 import './Pagination.css';
-import { ArrowLeft, ArrowRight } from './Icons';
+import {ReactComponent as ArrowLeft }from './arrow-left.svg';
+import {ReactComponent as ArrowRight }from './arrow-right.svg';
 
 
 const LEFT_PAGE = 'LEFT';
