@@ -1,11 +1,11 @@
-import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RequestUser } from "Models";
+import {createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {  Users } from "Models";
 
 
 const userTableSlice = createSlice({
     name: "usersTable",
     initialState: {
-        users: [] as RequestUser[],
+        users: [] as Users[],
         loadRequest: false,
         loadrequestfail: false
     },

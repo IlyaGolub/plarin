@@ -2,35 +2,31 @@ import React, { useEffect } from 'react'
 import { RootState } from 'typesafe-actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { usersTableActions } from '../slice'
+import './UserTable.css'
+import { Container, Row, Col, Pagination } from 'react-bootstrap'
 
-const style = {
-    li: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '.5rem 1rem',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        marginBottom: '.5rem'
-    }
-}
+
 export const UsersTable: React.FC = () => {
     const dispatch = useDispatch();
-    const users = useSelector((s:RootState) => s.userTable.users);  
+    const users = useSelector((s: RootState) => s.userTable.users);
 
-    const func = () =>{
-        {console.log(users)}
-        return <div></div>    
-    }
-    useEffect(()=>{
-        console.log("test1");
+
+    useEffect(() => {
         dispatch(usersTableActions.Request(true));
-    },[])
-  
+    }, [])
 
     return (
-        <div style={style.li}>
-           {func()}
-        </div>
+        <Container>
+            <Row className={"TableUsers justify-content-md-center"}>
+                {users.map((elem, index) => {
+                    return <Col  key={index} className={"UserCard"}>
+                        <img width={64} height={64} src={`${elem.avatar}`} alt={"Loading img"} />
+                        <div>{elem.first_name} {elem.last_name}</div>
+                        <div>{elem.email}</div>
+                    </Col>
+                })}
+                <Pagination>{users.length}</Pagination>
+            </Row>
+        </Container>
     )
 }

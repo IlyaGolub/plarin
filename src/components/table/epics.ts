@@ -19,10 +19,9 @@ export const loadUsersDataEpic: Epic<
                     method: "GET"
                 }).pipe(
                     switchMap(response => {                    
-                        if (response.ok)  {
-                            console.log("test")
+                        if (response.ok) 
                             return response.json();
-                        }
+                                                    
                         throw new Error();
                     }),
                     map(usersTableActions.listSuccess),

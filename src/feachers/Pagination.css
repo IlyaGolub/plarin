@@ -1,0 +1,32 @@
+.page-link {
+    color: grey;
+    border: none;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent;
+    margin: 8px;
+    padding: 0;
+  }
+  
+  .page-link:hover {
+    color: black;
+  }
+  
+  .active .page-link {
+    background-color: transparent !important;
+    border-bottom: 2px solid #00b956 !important;  
+    color: black !important;
+  }
+
+  .page-item-next svg path, .page-item-prev svg path {
+      fill: #333333;
+      opacity: .5;
+  }
+
+  .page-item-next:hover svg path, .page-item-prev:hover svg path {
+    opacity: 1;
+}
+
+.page-item-next .page-link, .page-item-prev .page-link  {
+    margin-top: 4px;
+}

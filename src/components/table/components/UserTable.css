@@ -1,0 +1,36 @@
+.TableUsers  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;    
+    margin-bottom: .5rem;    
+}
+.UserCard  {   
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    padding: .5rem 1rem;  
+    margin: .1rem;  
+    word-wrap: break-word;
+    min-height: 120px;
+    min-width: 120px;
+}
+@media screen and (min-width: 801px) {
+    .UserCard  {
+        flex: 0 0 25%;
+    max-width: 25%;
+     
+    }
+}
+@media screen and (max-width: 800px) {
+    .UserCard  {
+       flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .UserCard  {
+       flex: 0 0 60%;
+    max-width: 60%;
+    }
+}
+
